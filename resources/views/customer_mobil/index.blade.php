@@ -9,8 +9,13 @@
 <body>
 
     <div class="container mt-4">
-        <h2>Customer Mobil Information</h2>
+        <h2>Customer Mobil </h2>
         <a href="{{ route('customer_mobil.create') }}" class="btn btn-primary mb-2">Tambah Mobil Customer</a>
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
 
         <table class="table">
             <thead>
@@ -53,8 +58,12 @@
                 @endforelse
             </tbody>
         </table>
+        <form action="{{ route('logout') }}" method="POST" class="d-inline">
+        @csrf
+        <button type="submit" class="btn btn-danger">Logout</button>
+    <!-- </div>
         <a href="{{ route('customer.index') }}" class="btn btn-secondary">Back to Customer Table</a>
-    </div>
+    </div> -->
 
     <!-- Sesuaikan dengan library JavaScript yang Anda gunakan, contoh menggunakan Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

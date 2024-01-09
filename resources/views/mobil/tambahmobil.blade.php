@@ -44,7 +44,7 @@
 
                         <div class="text-center">
                             <button type="submit" class="btn btn-primary">Tambah Mobil</button>
-                            <a href="/mobil/index" class="btn btn-secondary">Batal</a>
+                           
                         </div>
                     </form>
                 </div>

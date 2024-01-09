@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Mobil</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-xwz5KD/WT06P4ATnA5ou22Ld9bpAjsEe+JykRQs4Mj47Ro9X1W9wCr/YQnNRvBwoQzN3eFiOSt5ZyZ5OL/kDgw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 <body>
 
@@ -12,6 +14,19 @@
         <h2>Data Mobil</h2>
         <a href="{{ route('mobil.create') }}" class="btn btn-primary mb-2">Tambah Mobil</a>
         <a href="{{ route('customer.index') }}" class="btn btn-success mb-2">Data Customer</a>
+       
+        @if(session('welcomeMessage'))
+    <div class="alert alert-success">
+        {{ session('welcomeMessage') }}
+    </div>
+@endif
+    </form>
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
         <table class="table">
             <thead>
                 <tr>
@@ -52,6 +67,9 @@
                 @endforeach
             </tbody>
         </table>
+        <form action="{{ route('logout') }}" method="POST" class="d-inline">
+        @csrf
+        <button type="submit" class="btn btn-danger">Logout</button>
     </div>
 
     <!-- Sesuaikan dengan library JavaScript yang Anda gunakan, contoh menggunakan Bootstrap JS -->

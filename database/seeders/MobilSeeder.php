@@ -19,5 +19,5 @@ class MobilSeeder extends Seeder
             'warna' => 'Blue',
             'keterangan' => 'Sedan',
         ]);
-    }
+    } 
 }

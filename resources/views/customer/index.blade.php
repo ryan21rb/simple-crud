@@ -12,6 +12,11 @@
         <h2>Data Customer</h2>
         <a href="{{ route('customer.create') }}" class="btn btn-primary mb-2">Tambah Customer</a>
         <a href="{{ route('customer_mobil.index') }}" class="btn btn-info mb-2">Go to Customer Mobil Table</a>
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         <table class="table">
             <thead>
                 <tr>
