@@ -23,7 +23,7 @@ class SesiController extends Controller
         ]);
 
         $credentials = [
-            'email' => $request->email,
+            'email' => $request->email,         
             'password' => $request->password,
         ];
 
@@ -31,9 +31,9 @@ class SesiController extends Controller
             $user = Auth::user();
 
             if ($user->role == 'admin') {
-                return redirect()->route('mobil.index');
+                return redirect()->route('mobil.index')->with('welcomeMessage', 'Selamat datang Admin ' . $user->name);
             } elseif ($user->role == 'staff') {
-                return redirect()->route('customer_mobil.index');
+                return redirect()->route('customer_mobil.index')->with('welcomeMessage', 'Selamat datang Staff ' . $user->name);
             }
         }
 

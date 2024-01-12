@@ -11,7 +11,7 @@
 <body>
     <div class="container py-5">
         <div class="w-50 mx-auto p-3 border rounded">
-            <h1 class="text-center">Login</h1>
+            <h1 class="text-center"><i class="fas fa-sign-in-alt"></i> Login</h1>
             @if($errors->any())
                 <div class="alert alert-danger">
                     <ul>
@@ -32,7 +32,7 @@
                     <input type="password" name="password" class="form-control">
                 </div>
                 <div class="mb-3 d-grid">
-                    <button name="submit" type="submit" class="btn btn-primary">Login</button>
+                    <button name="submit" type="submit" class="btn btn-outline-primary">Login</button>
                 </div>
             </form>
         </div> 

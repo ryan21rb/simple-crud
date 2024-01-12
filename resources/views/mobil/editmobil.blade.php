@@ -17,10 +17,10 @@
                     <form action="{{ route('mobil.update', $mobil->id_mobil) }}" method="POST">
                             @csrf
 
-                            <div class="form-group">
-    <label for="id_mobil">ID Mobil:</label>
-    <input type="text" name="id_mobil" class="form-control" value="{{ $mobil->id_mobil }}">
-</div>
+                           <div class="form-group">
+                                <label for="id_mobil">ID Mobil:</label>
+                                <input type="text" name="id_mobil" class="form-control" value="{{ $mobil->id_mobil }}"readonly>
+                            </div>
 
                             <div class="form-group">
                                 <label for="merek">Merek:</label>
@@ -47,8 +47,8 @@
                                         </ul>
                                     </div>
                                 @endif
-                                <button type="submit" class="btn btn-primary">Simpan</button>
-                                <a href="{{ route('mobil.index') }}" class="btn btn-secondary">Batal</a>
+                                <button type="submit" class="btn btn-outline-primary">Simpan</button>
+                                <a href="{{ route('mobil.index') }}" class="btn btn-outline-secondary">Batal</a>
                             </div>
                         </form>
                     </div>

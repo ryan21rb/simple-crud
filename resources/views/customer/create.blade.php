@@ -16,7 +16,7 @@
 
             <div class="form-group">
                 <label for="id_customer">ID Customer:</label>
-                <input type="text" name="id_customer" class="form-control" required>
+                <input type="text" name="id_customer" id="id_customer" class="form-control" value="{{ $id_customer }}" readonly>
             </div>
 
             <div class="form-group">
@@ -33,7 +33,8 @@
                 <input type="alamat" name="alamat" class="form-control" required>
             </div>
 
-            <button type="submit" class="btn btn-primary">Create Customer</button>
+            <button type="submit" class="btn btn-outline-primary">Create Customer</button>
+            <a href="{{ route('customer.index') }}" class="btn btn-outline-secondary">Batal</a>
         </form>
     </div>
 

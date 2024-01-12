@@ -17,71 +17,48 @@ class customermobilController extends Controller
 
     public function create()
 {
-    // Mendapatkan data customers dan mobils dari database
+    $id_customer_mobil = customermobil::max('kode') + 1;
     $customers = Customer::all();
     $mobils = Mobil::all();
 
-    // Mengirimkan data ke view
-    return view('customer_mobil.create', compact('customers', 'mobils'));
+    return view('customer_mobil.create', compact('customers', 'mobils', 'id_customer_mobil'));
 }
 
 
 
 public function store(Request $request)
 {
-    // Validasi form
-    $request->validate([
-        'kode' => 'required|numeric',
-        'id_customer' => 'required',
-        'id_mobil' => 'required',// Sesuaikan dengan kebutuhan validasi lainnya
-    ]);
+    
+    $newCustomerMobil = new CustomerMobil($request->all());
+    $newCustomerMobil->save();
 
-    // Simpan data ke dalam tabel customer_mobil
-    CustomerMobil::create([
-        'kode' => $request->kode,
-        'id_customer' => $request->id_customer,
-        'id_mobil' => $request->id_mobil,
-        // Sesuaikan dengan field lain yang perlu disimpan
-    ]);
-
-    // Redirect ke halaman yang diinginkan setelah penyimpanan berhasil
-    return redirect()->route('customer_mobil.index')->with('success', 'Data Customer Mobil berhasil disimpan.');
+    return redirect()->route('customer_mobil.index')->with('success', 'Customer Mobil created successfully');
 }
+
 
 public function update(Request $request, $kode)
 {
-    $request->validate([
-        'kode' => 'required',
-        'id_customer' => 'required', // Add validation rules if needed (e.g., 'numeric', 'exists')
-        'id_mobil' => 'required', // Add validation rules if needed (e.g., 'numeric', 'exists')
-        'nama' => 'required', // Add validation rules if needed (e.g., 'numeric', 'exists')
-    ]);
+ 
 
-    $customerMobil = CustomerMobil::findOrFail($kode);
+    $customerMobil = CustomerMobil::find($kode);
+    $customerMobil->id_customer = $request->id_customer;
+    $customerMobil->id_mobil = $request->id_mobil;
+    $customerMobil->save();
 
-    $customerMobil->update([
-        'kode' => $request->kode,
-        'id_customer' => $request->id_customer,
-        'id_mobil' => $request->id_mobil,
-        'nama' => $request->nama,
-    ]);
-
-    return redirect()->route('customer_mobil.index')->with('success', 'Customer berhasil diperbarui.');
+    return redirect()->route('customer_mobil.index')->with('success', 'Customer Mobil updated successfully.');
 }
+
+
 
 public function edit($kode)
 {
     $customerMobil = CustomerMobil::find($kode);
+    $customers = Customer::all(); 
+    $mobils = Mobil::all(); 
 
-    if (!$customerMobil) {
-        // Handle the case where the customerMobil is not found, for example, redirect to an error page
-        return redirect()->route('error.page');
-    }
-
-    // Add logic to fetch related data if needed
-
-    return view('customer_mobil.edit', compact('customerMobil'));
+    return view('customer_mobil.edit', compact('customerMobil', 'customers', 'mobils'));
 }
+
 
 
 

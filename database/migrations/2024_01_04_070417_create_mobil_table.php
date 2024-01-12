@@ -7,12 +7,12 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * Run the migrations. 
      */
     public function up(): void
     {
         Schema::create('mobil', function (Blueprint $table) {
-            $table->string('id_mobil')->primary();
+            $table->id('id_mobil');
             $table->string('merek');
             $table->string('warna');
             $table->text('keterangan');

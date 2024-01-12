@@ -17,10 +17,10 @@
                     <form action="{{ route('customer.update', $customer->id_customer) }}" method="POST">
                             @csrf
 
-                                                            <div class="form-group">
+                            <div class="form-group">
                                     <label for="id_customer">ID Customer:</label>
                                     <input type="text" name="id_customer" class="form-control" value="{{ $customer->id_customer }}">
-                                </div>
+                            </div>
 
                             <div class="form-group">
                                 <label for="nama">Nama:</label>
@@ -48,8 +48,8 @@
                                         </ul>
                                     </div>
                                 @endif
-                                <button type="submit" class="btn btn-primary">Simpan</button>
-                                <a href="{{ route('customer.index') }}" class="btn btn-secondary">Batal</a>
+                                <button type="submit" class="btn btn-outline-primary">Simpan</button>
+                                <a href="{{ route('customer.index') }}" class="btn btn-outline-secondary">Batal</a>
                             </div>
                         </form>
                     </div>

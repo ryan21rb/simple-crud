@@ -9,14 +9,16 @@ class AdminController extends Controller
 {
     public function index()
     {
-      return redirect('admin');
+        return view('admin');
     }
+
     public function admin()
     {
-        return redirect('admin');
+        return view('admin.admin');
     }
+
     public function staff()
     {
-        return redirect('admin');
+        return view('admin.staff');
     }
 }

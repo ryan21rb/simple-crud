@@ -11,7 +11,8 @@ class customermobil extends Model
     protected $primaryKey = 'kode';
     protected $table = 'customer_mobil';
     protected $fillable =['kode', 'id_customer', 'id_mobil'];
-    
+    public $incrementing = false;
+    protected $keyType = 'integer';
     
     public function customer()
     {

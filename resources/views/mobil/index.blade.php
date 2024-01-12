@@ -6,14 +6,14 @@
     <title>Data Mobil</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-xwz5KD/WT06P4ATnA5ou22Ld9bpAjsEe+JykRQs4Mj47Ro9X1W9wCr/YQnNRvBwoQzN3eFiOSt5ZyZ5OL/kDgw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 </head>
+
 <body>
 
     <div class="container mt-4">
         <h2>Data Mobil</h2>
-        <a href="{{ route('mobil.create') }}" class="btn btn-primary mb-2">Tambah Mobil</a>
-        <a href="{{ route('customer.index') }}" class="btn btn-success mb-2">Data Customer</a>
+        <a href="{{ route('mobil.create') }}" class="btn btn-outline-primary">Tambah Mobil</a>
+        <a href="{{ route('customer.index') }}" class="btn btn-outline-info">Data Customer</a>
        
         @if(session('welcomeMessage'))
     <div class="alert alert-success">
@@ -21,11 +21,13 @@
     </div>
 @endif
     </form>
-        @if(session('success'))
+                @if(session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
             </div>
-        @endif
+                @endif
+
+                
 
         <table class="table">
             <thead>
@@ -45,31 +47,32 @@
                         <td>{{ $mobil->warna }}</td>
                         <td>{{ $mobil->keterangan }}</td>
                         <td>
-                            <a href="{{ route('mobil.edit', $mobil->id_mobil) }}" class="btn btn-warning">Edit</a>
-                            <form id="deleteForm" action="{{ route('mobil.delete', $mobil->id_mobil) }}" method="POST" class="d-inline">
+                            <a href="{{ route('mobil.edit', $mobil->id_mobil) }}" class="btn btn-outline-warning">Edit</a>
+                            <form id="deleteForm{{ $mobil->id_mobil }}" action="{{ route('mobil.delete', $mobil->id_mobil) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
-                                <button type="button" class="btn btn-danger" onclick="confirmDelete()">Hapus</button>
+                                <button type="button" class="btn btn-outline-danger" onclick="confirmDelete('{{ $mobil->id_mobil }}')">Hapus</button>
                             </form>
-                            <script>
-                                function confirmDelete() {
-                                    if (confirm("Apakah Anda yakin ingin menghapus mobil ini?")) {
-                                        document.getElementById('deleteForm').submit();
-                                    } else {
-                                        alert("Penghapusan mobi dibatalkan.");
-                                        // atau tambahkan tindakan lainnya jika diperlukan
-                                    }
-                                }
-                                
-                            </script>
+              <script>
+                function confirmDelete(id_mobil) {
+                    if (confirm("Apakah Anda yakin ingin menghapus mobil ini?")) {
+                        document.getElementById('deleteForm' + id_mobil).submit();
+                    } else {
+                        alert("Penghapusan mobil telah dibatalkan.");
+                    }
+                }
+                                </script>
+
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
+        
         <form action="{{ route('logout') }}" method="POST" class="d-inline">
-        @csrf
-        <button type="submit" class="btn btn-danger">Logout</button>
+            @csrf
+            <button type="submit" class="btn btn-outline-dark">Logout</button>
+        </form>
     </div>
 
     <!-- Sesuaikan dengan library JavaScript yang Anda gunakan, contoh menggunakan Bootstrap JS -->

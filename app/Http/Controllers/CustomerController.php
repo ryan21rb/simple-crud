@@ -14,8 +14,9 @@ class CustomerController extends Controller
         return view('customer.index', compact('customers'));
     }
     public function create()
-    {
-        return view('customer.create');
+    { 
+        $id_customer = customer::max('id_customer') + 1;
+        return view('customer.create',  compact('id_customer'));
     }
     public function store(Request $request)
     {
@@ -25,17 +26,19 @@ class CustomerController extends Controller
             'email' => 'required|email',
             'alamat' => 'required',
         ]);
-
+    
+     
         $customer = new Customer([
             'id_customer' => $request->input('id_customer'),
             'nama' => $request->input('nama'),
             'email' => $request->input('email'),
             'alamat' => $request->input('alamat'),
         ]);
-
+    
         $customer->save();
-
-        return redirect()->route('customer.index')->with('success', 'Customer berhasil ditambahkan.');
+    
+        
+        return redirect()->route('customer.index')->with('success', 'Data customer berhasil ditambahkan.');
     }
     public function edit($id_customer)
     {

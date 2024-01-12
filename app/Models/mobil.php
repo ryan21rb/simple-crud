@@ -11,6 +11,8 @@ class mobil extends Model
     protected $primaryKey = 'id_mobil';
     protected $table = 'mobil';
     protected $fillable =['id_mobil', 'merek', 'warna', 'keterangan']; 
+    public $incrementing = false;
+    protected $keyType = 'integer';
  
     public function customerMobils()
     {

@@ -15,37 +15,35 @@ class mobilcontroller extends Controller
         
         return view('mobil.index', compact('mobil'));
     }
-
     public function create()
     {
-        return view('mobil.tambahmobil');
+       
+        $nextIdMobil = Mobil::max('id_mobil') + 1;
+        return view('mobil.tambahmobil', compact('nextIdMobil'));
     }
 
-  // MobilController.php
-
-public function store(Request $request)
-{
-    // Validasi data formulir
-    $request->validate([
-        'id_mobil' => 'required',
-        'merek' => 'required',
-        'warna' => 'required',
-        'keterangan' => 'required',
-    ]);
-
-    // Simpan data baru ke dalam database
-    $mobil = new Mobil([
-        'id_mobil' => $request->get('id_mobil'),
-        'merek' => $request->get('merek'),
-        'warna' => $request->get('warna'),
-        'keterangan' => $request->get('keterangan'),
-    ]);
-
-    $mobil->save();
-
-    // Redirect ke halaman lain atau tampilkan pesan sukses
-    return redirect()->route('mobil.index')->with('success', 'Data mobil berhasil ditambahkan!');
-}
+    public function store(Request $request)
+    {
+        // Validasi data formulir
+        $request->validate([
+            'merek' => 'required',
+            'warna' => 'required',
+            'keterangan' => 'required',
+        ]);
+    
+        // Simpan data baru ke dalam database
+        $mobil = new Mobil([
+            'id_mobil' => $request->get('id_mobil'),
+            'merek' => $request->get('merek'),
+            'warna' => $request->get('warna'),
+            'keterangan' => $request->get('keterangan'),
+        ]);
+    
+        $mobil->save();
+    
+        // Redirect ke halaman lain atau tampilkan pesan sukses
+        return redirect()->route('mobil.index')->with('success', 'Data mobil berhasil ditambahkan!');
+    }
 
 
     public function edit($id_mobil)

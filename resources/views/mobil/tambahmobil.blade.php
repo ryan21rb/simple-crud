@@ -1,5 +1,3 @@
-<!-- resources/views/produk/create.blade.php -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,20 +19,20 @@
                 <div class="card-body">
                     <form action="{{ route('mobil.store') }}" method="POST">
                         @csrf
-
+  
                         <div class="form-group">
                             <label for="id_mobil">Id Mobil:</label>
-                            <input type="text" name="id_mobil" id="id_mobil" class="form-control" value="{{ old('id_mobil') }}" required>
+                            <input type="text" name="id_mobil" id="id_mobil" class="form-control" value="{{ $nextIdMobil }}" readonly>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="merek">Merek:</label>
-                            <input type="text" name="merek" id="merek" class="form-control" value="{{ old('merek') }}">
+                            <input type="text" name="merek" id="merek" class="form-control" value="{{ old('merek') }}" required>
                         </div>
 
                         <div class="form-group">
                             <label for="warna">Warna:</label>
-                            <input type="text" name="warna" id="warna" class="form-control" value="{{ old('warna') }}">
+                            <input type="text" name="warna" id="warna" class="form-control" value="{{ old('warna') }}" required>
                         </div>
 
                         <div class="form-group">
@@ -43,8 +41,8 @@
                         </div>
 
                         <div class="text-center">
-                            <button type="submit" class="btn btn-primary">Tambah Mobil</button>
-                           
+                            <button type="submit" class="btn btn-outline-primary m-2">Tambah Mobil</button>
+                            <a href="{{ route('mobil.index') }}" class="btn btn-outline-secondary">Batal</a>
                         </div>
                     </form>
                 </div>

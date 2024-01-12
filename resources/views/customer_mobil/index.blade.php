@@ -10,7 +10,14 @@
 
     <div class="container mt-4">
         <h2>Customer Mobil </h2>
-        <a href="{{ route('customer_mobil.create') }}" class="btn btn-primary mb-2">Tambah Mobil Customer</a>
+        <a href="{{ route('customer_mobil.create') }}" class="btn btn-outline-primary">Tambah Mobil Customer</a>
+     
+        @if(session('welcomeMessage'))
+    <div class="alert alert-success">
+        {{ session('welcomeMessage') }}
+    </div>
+@endif
+
         @if(session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
@@ -40,14 +47,21 @@
                         <td>{{ $customerMobil->mobil->warna }}</td>
                 
                          <td>
-                         <a href="{{ route('customer_mobil.edit', ['kode' => $customerMobil->kode]) }}" class="btn btn-warning">Edit</a>
-
-
+                         <a href="{{ route('customer_mobil.edit', ['kode' => $customerMobil->kode]) }}" class="btn btn-outline-warning">Edit</a>
                              <form id="deleteForm{{ $customerMobil->kode }}" action="{{ route('customer_mobil.delete', $customerMobil->kode) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
-                                <button type="button" class="btn btn-danger" onclick="confirmDelete('{{ $customerMobil->kode }}')">Delete</button>
+                                <button type="button" class="btn btn-outline-danger" onclick="confirmDelete('{{ $customerMobil->kode }}')">Delete</button>
                             </form>
+             <script>
+                        function confirmDelete(kode) {
+                            if (confirm("Apakah Anda yakin ingin menghapus customer mobil ini?")) {
+                                document.getElementById('deleteForm' + kode).submit();
+                            } else {
+                                alert("Penghapusan customer mobil telah dibatalkan.");
+                            }
+                        }
+             </script>
                         </td>
                       
                     </tr>
@@ -58,9 +72,14 @@
                 @endforelse
             </tbody>
         </table>
+        @if(Auth::user()->role == 'admin')
+    <a href="{{ route('customer.index') }}" class="btn btn-outline-secondary">Back to Data Customer</a>
+        @endif
         <form action="{{ route('logout') }}" method="POST" class="d-inline">
         @csrf
-        <button type="submit" class="btn btn-danger">Logout</button>
+        @if(Auth::user()->role == 'staff')
+        <button type="submit" class="btn btn-outline-dark">Logout</button>
+        @endif
     <!-- </div>
         <a href="{{ route('customer.index') }}" class="btn btn-secondary">Back to Customer Table</a>
     </div> -->

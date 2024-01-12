@@ -10,8 +10,8 @@
 
     <div class="container mt-4">
         <h2>Data Customer</h2>
-        <a href="{{ route('customer.create') }}" class="btn btn-primary mb-2">Tambah Customer</a>
-        <a href="{{ route('customer_mobil.index') }}" class="btn btn-info mb-2">Go to Customer Mobil Table</a>
+        <a href="{{ route('customer.create') }}" class="btn btn-outline-primary">Tambah Customer</a>
+        <a href="{{ route('customer_mobil.index') }}" class="btn btn-outline-info">Go to Customer Mobil Table</a>
         @if(session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
@@ -24,6 +24,7 @@
                     <th>Nama</th>
                     <th>Email</th>
                     <th>Alamat</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -34,28 +35,26 @@
                         <td>{{ $customer->email }}</td>
                         <td>{{ $customer->alamat }}</td>
                         <td>
-                            <a href="{{ route('customer.edit', $customer->id_customer) }}" class="btn btn-warning">Edit</a>
-                            <form id="deleteForm" action="{{ route('customer.delete', $customer->id_customer) }}" method="POST" class="d-inline">
+                            <a href="{{ route('customer.edit', $customer->id_customer) }}" class="btn btn-outline-warning">Edit</a>
+                            <form id="deleteForm{{ $customer->id_customer }}" action="{{ route('customer.delete', $customer->id_customer) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
-                                <button type="button" class="btn btn-danger" onclick="confirmDelete()">Hapus</button>
+                                <button type="button" class="btn btn-outline-danger" onclick="confirmDelete('{{ $customer->id_customer }}')">Hapus</button>
                             </form>
                             <script>
-                                function confirmDelete() {
-                                    if (confirm("Apakah Anda yakin ingin menghapus customer ini?")) {
-                                        document.getElementById('deleteForm').submit();
-                                    } else {
-                                        alert("Penghapusan customer dibatalkan.");
-                                        // atau tambahkan tindakan lainnya jika diperlukan
-                                    }
-                                }
-                                
-                            </script>
+    function confirmDelete(id_customer) {
+        if (confirm("Apakah Anda yakin ingin menghapus customer ini?")) {
+            document.getElementById('deleteForm' + id_customer).submit();
+        } else {
+            alert("Penghapusan customer telah dibatalkan.");
+        }
+    }
+</script>
                     </tr>
                 @endforeach
             </tbody>
         </table>
-        <a href="{{ route('mobil.index') }}" class="btn btn-secondary mb-2">Back to Data Mobil</a>
+        <a href="{{ route('mobil.index') }}" class="btn btn-outline-secondary">Back to Data Mobil</a>
     </div>
 
     <!-- Sesuaikan dengan library JavaScript yang Anda gunakan, contoh menggunakan Bootstrap JS -->
