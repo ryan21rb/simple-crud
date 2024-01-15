@@ -20,10 +20,7 @@
                     <form action="{{ route('mobil.store') }}" method="POST">
                         @csrf
   
-                        <div class="form-group">
-                            <label for="id_mobil">Id Mobil:</label>
-                            <input type="text" name="id_mobil" id="id_mobil" class="form-control" value="{{ $nextIdMobil }}" readonly>
-                        </div>
+                      
 
                         <div class="form-group">
                             <label for="merek">Merek:</label>

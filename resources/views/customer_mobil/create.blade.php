@@ -15,11 +15,6 @@
             @csrf
 
             <div class="form-group">
-                <label for="kode">Kode:</label>
-                <input type="text" name="kode" id="kode" class="form-control" value="{{ $id_customer_mobil }}" readonly>
-            </div>
-
-            <div class="form-group">
                 <label for="id_customer">ID Customer:</label>
                 <select name="id_customer" id="id_customer" class="form-control" required>
                     @foreach($customers as $customer)

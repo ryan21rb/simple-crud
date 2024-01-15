@@ -16,11 +16,11 @@
         <form action="{{ route('customer_mobil.update', $customerMobil->kode) }}" method="POST">
             @csrf
             @method('PUT')
-
+<!-- 
             <div class="form-group">
                 <label for="kode">Kode:</label>
                 <input type="number" name="kode" class="form-control" value="{{ $customerMobil->kode }}" required readonly>
-            </div>
+            </div> -->
 
             <div class="form-group">
     <label for="id_customer">ID Customer:</label>

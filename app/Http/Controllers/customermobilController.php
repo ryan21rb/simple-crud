@@ -16,13 +16,20 @@ class customermobilController extends Controller
     }
 
     public function create()
-{
-    $id_customer_mobil = customermobil::max('kode') + 1;
-    $customers = Customer::all();
-    $mobils = Mobil::all();
-
-    return view('customer_mobil.create', compact('customers', 'mobils', 'id_customer_mobil'));
-}
+    {
+        $customers = Customer::all();
+        $mobils = Mobil::all();
+    
+        // Remove the 'kode' field from the request
+        $requestWithoutKode = request()->except('kode');
+    
+        // Auto-incremented value will be assigned when saving
+        $newCustomerMobil = new CustomerMobil($requestWithoutKode);
+    
+        return view('customer_mobil.create', compact('customers', 'mobils', 'newCustomerMobil'));
+    }
+    
+    
 
 
 

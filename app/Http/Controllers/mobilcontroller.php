@@ -8,18 +8,16 @@ use Illuminate\Http\Request;
 class mobilcontroller extends Controller
 {
 
-    
     public function index()
     {
-        $mobil = mobil::all();
-        
+        $mobil = Mobil::orderBy('id_mobil')->get();
         return view('mobil.index', compact('mobil'));
     }
+    
     public function create()
     {
-       
-        $nextIdMobil = Mobil::max('id_mobil') + 1;
-        return view('mobil.tambahmobil', compact('nextIdMobil'));
+     
+        return view('mobil.tambahmobil');
     }
 
     public function store(Request $request)
@@ -30,20 +28,22 @@ class mobilcontroller extends Controller
             'warna' => 'required',
             'keterangan' => 'required',
         ]);
-    
+
         // Simpan data baru ke dalam database
         $mobil = new Mobil([
-            'id_mobil' => $request->get('id_mobil'),
             'merek' => $request->get('merek'),
             'warna' => $request->get('warna'),
             'keterangan' => $request->get('keterangan'),
         ]);
-    
+
         $mobil->save();
-    
+
         // Redirect ke halaman lain atau tampilkan pesan sukses
         return redirect()->route('mobil.index')->with('success', 'Data mobil berhasil ditambahkan!');
     }
+
+    
+    
 
 
     public function edit($id_mobil)
@@ -55,7 +55,7 @@ class mobilcontroller extends Controller
     public function update(Request $request, $id_mobil)
 {
     $request->validate([
-        'id_mobil' => 'required',
+      
         'merek' => 'required',
         'warna' => 'required',
         'keterangan' => 'required',
@@ -64,7 +64,7 @@ class mobilcontroller extends Controller
     $mobil = mobil::findOrFail($id_mobil);
 
     $mobil->update([
-        'id_mobil' => $request->id_mobil,
+        
         'merek' => $request->merek,
         'warna' => $request->warna,
         'keterangan' => $request->keterangan,

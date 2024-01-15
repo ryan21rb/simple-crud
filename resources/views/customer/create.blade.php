@@ -14,10 +14,10 @@
         <form action="{{ route('customer.store') }}" method="POST">
             @csrf
 
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="id_customer">ID Customer:</label>
                 <input type="text" name="id_customer" id="id_customer" class="form-control" value="{{ $id_customer }}" readonly>
-            </div>
+            </div> -->
 
             <div class="form-group">
                 <label for="nama">Nama:</label>

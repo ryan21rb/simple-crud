@@ -10,10 +10,12 @@ class mobil extends Model
     use HasFactory;
     protected $primaryKey = 'id_mobil';
     protected $table = 'mobil';
-    protected $fillable =['id_mobil', 'merek', 'warna', 'keterangan']; 
-    public $incrementing = false;
-    protected $keyType = 'integer';
- 
+    protected $fillable =[ 'merek', 'warna', 'keterangan']; 
+    public $incrementing = true; // Indicates whether the IDs are auto-incrementing
+
+    protected $keyType = 'int'; // The type of the primary key
+
+    public $timestamps = true;
     public function customerMobils()
     {
         return $this->belongsToMany(Customer::class, 'customer_mobil', 'id_mobil', 'id_customer');

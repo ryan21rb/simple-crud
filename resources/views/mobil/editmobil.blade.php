@@ -17,10 +17,6 @@
                     <form action="{{ route('mobil.update', $mobil->id_mobil) }}" method="POST">
                             @csrf
 
-                           <div class="form-group">
-                                <label for="id_mobil">ID Mobil:</label>
-                                <input type="text" name="id_mobil" class="form-control" value="{{ $mobil->id_mobil }}"readonly>
-                            </div>
 
                             <div class="form-group">
                                 <label for="merek">Merek:</label>

@@ -18,11 +18,6 @@
                             @csrf
 
                             <div class="form-group">
-                                    <label for="id_customer">ID Customer:</label>
-                                    <input type="text" name="id_customer" class="form-control" value="{{ $customer->id_customer }}">
-                            </div>
-
-                            <div class="form-group">
                                 <label for="nama">Nama:</label>
                                 <input type="text" name="nama" id="nama" class="form-control" value="{{ $customer->nama }}">
                             </div>
